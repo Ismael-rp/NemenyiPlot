@@ -84,16 +84,7 @@ plot_nemenyi = function(
                     vertical, color_ties, reversed_ruler, show_means,
                     dots_size, debug_)
 
-  # Plot
-  if(is.na(filepath)){
-    create_plot_and_components()
-    
-  }else{
-    pdf(filepath, width, height)
-    create_plot_and_components()
-    output = dev.off()
-  }
-  
+  draw_full_plot(filepath, width, height)
   clean_env()
 }
 
@@ -166,7 +157,35 @@ initialize_global_varaibles = function(
   .env$debug_ = debug_
 }
 
-create_plot_and_components = function() {
+
+draw_full_plot = function(filepath, width, height) {
+  
+  if (is.na(filepath)) {
+    create_plot_window_and_draw_components()
+    
+  } else {
+    ext = tools::file_ext(filepath)
+    
+    if (ext == "pdf") {
+      pdf(filepath, width = width, height = height)
+      
+    } else if (ext == "jpeg" || ext == "jpg") {
+      jpeg(filepath, width = width * 100, height = height * 100)
+      
+    } else if (ext == "png") {
+      png(filepath, width = width * 100, height = height * 100)
+      
+    } else {
+      stop("Unsupported format. Use pdf, jpeg, or png.")
+    }
+
+    create_plot_window_and_draw_components()
+    dev.off()
+  }
+}
+
+
+create_plot_window_and_draw_components = function() {
   create_plot_window()
   draw_components()
 }

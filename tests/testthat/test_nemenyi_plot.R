@@ -255,6 +255,106 @@ test_that("nemenyi_test_and_plot save pdf",{
   
 })
 
+test_that("nemenyi_test_and_plot save png",{
+
+  x = matrix( rnorm(50*6,mean=0,sd=1), 50, 6)
+  x[,1] = x[,1]+1
+  x[,2] = x[,2]+2
+  x[,3] = x[,3]+3
+  x[,4] = x[,4]+4
+  x[,5] = x[,5]+100
+  x[,6] = x[,5]+100
+  colnames(x) = c("Method A","Method B","Method C - long name","Method D", "Method E", "Method F")
+
+  temp_file = tempfile(fileext = ".png")
+  
+  testthat::expect_no_error({
+    nemenyi_test_and_plot(x, conf.level=0.95, filepath=temp_file, width=6, height=3)
+  })
+
+  expect_true(
+    expect_true(file.exists(temp_file))
+  )
+  unlink(temp_file)
+  
+})
+
+test_that("nemenyi_test_and_plot save jpg",{
+
+  x = matrix( rnorm(50*6,mean=0,sd=1), 50, 6)
+  x[,1] = x[,1]+1
+  x[,2] = x[,2]+2
+  x[,3] = x[,3]+3
+  x[,4] = x[,4]+4
+  x[,5] = x[,5]+100
+  x[,6] = x[,5]+100
+  colnames(x) = c("Method A","Method B","Method C - long name","Method D", "Method E", "Method F")
+
+  temp_file = tempfile(fileext = ".jpg")
+  
+  testthat::expect_no_error({
+    nemenyi_test_and_plot(x, conf.level=0.95, filepath=temp_file, width=6, height=3)
+  })
+
+  expect_true(
+    expect_true(file.exists(temp_file))
+  )
+  unlink(temp_file)
+  
+})
+
+test_that("nemenyi_test_and_plot save jpeg",{
+
+  x = matrix( rnorm(50*6,mean=0,sd=1), 50, 6)
+  x[,1] = x[,1]+1
+  x[,2] = x[,2]+2
+  x[,3] = x[,3]+3
+  x[,4] = x[,4]+4
+  x[,5] = x[,5]+100
+  x[,6] = x[,5]+100
+  colnames(x) = c("Method A","Method B","Method C - long name","Method D", "Method E", "Method F")
+
+  temp_file = tempfile(fileext = ".jpeg")
+  
+  testthat::expect_no_error({
+    nemenyi_test_and_plot(x, conf.level=0.95, filepath=temp_file, width=6, height=3)
+  })
+
+  expect_true(
+    expect_true(file.exists(temp_file))
+  )
+  unlink(temp_file)
+  
+})
+
+test_that("nemenyi_test_and_plot save wrong extension",{
+
+  x = matrix( rnorm(50*6,mean=0,sd=1), 50, 6)
+  x[,1] = x[,1]+1
+  x[,2] = x[,2]+2
+  x[,3] = x[,3]+3
+  x[,4] = x[,4]+4
+  x[,5] = x[,5]+100
+  x[,6] = x[,5]+100
+  colnames(x) = c("Method A","Method B","Method C - long name","Method D", "Method E", "Method F")
+
+  temp_file = tempfile(fileext = ".error")
+  
+  testthat::expect_error({
+    nemenyi_test_and_plot(x, conf.level=0.95, filepath=temp_file, width=6, height=3)
+  })
+  
+  # No extension
+  temp_file = tempfile()
+  
+  testthat::expect_error({
+    nemenyi_test_and_plot(x, conf.level=0.95, filepath=temp_file, width=6, height=3)
+  })
+  
+  unlink(temp_file)
+  
+})
+
 
 test_that("nemenyi_test_and_plot_as_rows",{
 
