@@ -46,7 +46,7 @@ NemenyiPlot::plot_nemenyi(means, labels, cd, reversed_ruler = TRUE, dots_size = 
 NemenyiPlot::plot_nemenyi(means, labels, cd, vertical = T, show_means = TRUE)
 ```
 
-<img src="img/example3.svg" alt="Example 3" width="300" />
+<img src="img/example3.svg" alt="Example 3" width="225" />
 
 
 ```r
@@ -55,10 +55,10 @@ NemenyiPlot::plot_nemenyi(
   means, labels, cd, vertical = T, reversed_ruler = TRUE, color_ties = FALSE)
 ```
 
-<img src="img/example4.svg" alt="Example 4" width="300" />
+<img src="img/example4.svg" alt="Example 4" width="225" />
 
 
-### Nemenyi + Plot
+### Nemenyi test + Plot
 
 
 -   `nemenyi_test_and_plot` calculates the Nemenyi test and plots the results. Expects a matrix where **each row is a sample** and **each column is a method**.
