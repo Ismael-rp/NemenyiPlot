@@ -85,13 +85,21 @@ check_critical_diff = function(critical_diff) {
 check_saving_params = function(filepath, width, height){
   
   if (!is.na(filepath)) {
-    
-    if (!is.character(filepath)) {
-      stop("filepath must be a character string")
-    }
-    
+    check_filepath_extension(filepath)
     check_nonnegative_numeric(width, "width")
     check_nonnegative_numeric(height, "height")
+  }
+  
+}
+
+check_filepath_extension = function(filepath){
+
+  supported_extensions = c("pdf", "jpeg", "jpg", "png", "svg")
+  extension = tools::file_ext(filepath)
+
+  if (!extension %in% supported_extensions){
+    error_str = paste("Unsupported saving format. Use: [", paste(supported_extensions, collapse = ", "), "]", sep = "")
+    stop(error_str)
   }
   
 }

@@ -175,14 +175,18 @@ draw_full_plot = function(filepath, width, height) {
     } else if (ext == "png") {
       png(filepath, width = width * 100, height = height * 100)
       
+    } else if (ext == "svg") {
+      svg(filepath, width = width, height = height)
+      
     } else {
-      stop("Unsupported format. Use pdf, jpeg, or png.")
+      stop("Unsupported format.")
     }
 
     create_plot_window_and_draw_components()
     dev.off()
   }
 }
+
 
 
 create_plot_window_and_draw_components = function() {
@@ -462,12 +466,6 @@ draw_critical_diff_vertical_plot = function(){
   x_start_vertical = x-.env$critical_diff_vertical_lines
   x_end_vertical = x+.env$critical_diff_vertical_lines
   
-  if(!.env$reversed_ruler){
-    pos_text = 3
-  } else{
-    pos_text = 1
-  }
-  
   # vertical line
   lines(
     c(x, x),
@@ -496,7 +494,7 @@ draw_critical_diff_vertical_plot = function(){
     y_end + (y_start-y_end)/2,
     
     paste("CD =", round(.env$critical_diff, 2)),
-    pos=pos_text,
+    pos=3,
     srt = 90
   )
 }
@@ -910,24 +908,27 @@ nemenyi_test_and_plot = function(x, conf.level=0.95, labels=NA, ...) {
 #' 
 #' set.seed(1)
 #' 
-#' methods = c("Method A","Method B","Method C",
-#' "Method D", "Method E", "Method F")
+#' methods = c(
+#'   "Method A", "Method B", "Method C", "Method D", "Method E", "Method F"
+#' )
 #' 
 #' df = expand.grid(
-#'   fold = 1:10,
+#'   group = 1:10,
 #'   method = methods
 #' )
 #' 
-#' df$acc = c(
-#'   rnorm(10,mean=0,sd=1),
-#'   rnorm(10,mean=1,sd=1),
-#'   rnorm(10,mean=2,sd=1),
-#'   rnorm(10,mean=3,sd=1),
-#'   rnorm(10,mean=100,sd=1),
-#'   rnorm(10,mean=200,sd=1)
+#' df$score = c(
+#'   rnorm(10, mean = 0, sd = 1),
+#'   rnorm(10, mean = 1, sd = 1),
+#'   rnorm(10, mean = 2, sd = 1),
+#'   rnorm(10, mean = 3, sd = 1),
+#'   rnorm(10, mean = 100, sd = 1),
+#'   rnorm(10, mean = 200, sd = 1)
 #' )
 #' 
-#' nemenyi_test_and_plot_as_rows(df, "acc", "method", "fold")
+#' NemenyiPlot::nemenyi_test_and_plot_as_rows(
+#'   df, score = "score", method = "method", group = "group"
+#' )
 #' 
 #' @export
 #' 
