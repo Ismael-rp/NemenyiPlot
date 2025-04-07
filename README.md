@@ -22,8 +22,8 @@ cd = 1.2
 means = c(1, 1.01, 1.2, 3, 3.2, 3.5, 3.5, 3.5, 3.5, 6, 7)
 
 labels = c(
-  "Method E", "Method K", "Method D", "Method B", "Method C",
-  "Method J", "Method A", "Method G", "Method I", "Method F", "Method H"
+  "Method E", "Method K", "Method D", "Method B", "Method C", "Method J",
+  "Method A", "Method G", "Method I", "Method F", "Method H"
 )
 ```
 
@@ -51,7 +51,8 @@ NemenyiPlot::plot_nemenyi(means, labels, cd, vertical = T, show_means = TRUE)
 
 ```r
 # Vertical, inverted ruler with no colored ties
-NemenyiPlot::plot_nemenyi(means, labels, cd, vertical = T, reversed_ruler = TRUE, color_ties = FALSE,)
+NemenyiPlot::plot_nemenyi(
+  means, labels, cd, vertical = T, reversed_ruler = TRUE, color_ties = FALSE)
 ```
 
 <img src="img/example4.svg" alt="Example 4" width="300" />
@@ -100,7 +101,8 @@ df$score = c(
   rnorm(10, mean = 200, sd = 1)
 )
 
-NemenyiPlot::nemenyi_test_and_plot_as_rows(df, score = "score", method = "method", group = "group")
+NemenyiPlot::nemenyi_test_and_plot_as_rows(
+  df, score = "score", method = "method", group = "group")
 ```
 
 
