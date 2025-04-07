@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: person("Ismael", "Ramos", email = "ismaelrp@ubu.es", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0330-1605"))
 Maintainer: Ismael Ramos Pérez <ismaelrp@ubu.es>
 Description: A package for creating Nemenyi plots.
-License: MIT
+License: GPL-3
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 Imports:
