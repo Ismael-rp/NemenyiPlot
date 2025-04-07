@@ -80,7 +80,7 @@ colnames(x) = c("Method A", "Method B", "Method C", "Method D", "Method E", "Met
 NemenyiPlot::nemenyi_test_and_plot(x, conf.level = 0.95)
 ```
 
--   `nemenyi_test_and_plot_as_rows` takes a **long-format data frame** with columns for scores, methods, and groupings.
+-   `nemenyi_test_and_plot_as_rows` takes a **long-format data frame** with columns for the scores, methods, and groups.
 
 ```r
 set.seed(1)
